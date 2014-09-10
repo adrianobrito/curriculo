@@ -11,9 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140910013616) do
+ActiveRecord::Schema.define(version: 20140910145834) do
 
   create_table "cvs", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "info_pessoals", force: true do |t|
+    t.string   "cpf"
+    t.string   "nome"
+    t.string   "nacionalidade"
+    t.integer  "estadoCivil"
+    t.string   "endereco"
+    t.string   "numeroEndereco"
+    t.string   "complemento"
+    t.string   "bairro"
+    t.string   "cidade"
+    t.string   "estado"
+    t.string   "telefone"
+    t.integer  "curriculo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

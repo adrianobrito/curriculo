@@ -1,6 +1,8 @@
 class InfoUsuario < ActiveRecord::Base
 	include ActiveModel::Validations
-	validates_presence_of :email, :senha
+
+	belongs_to :cv
+	validates_presence_of :email, :senha, :cv_id
 	validates :email, :email => true
 	before_save  :criptografar_senha
 

@@ -1,0 +1,1 @@
+C:/Ruby200-x64/bin/ruby.exe -IC:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/rspec-core-3.0.1/lib;C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/rspec-support-3.0.0/lib -S C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/rspec-core-3.0.1/exe/rspec ./spec/models/cv_spec.rb ./spec/models/info_usuario_spec.rb

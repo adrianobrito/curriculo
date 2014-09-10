@@ -38,5 +38,8 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# Windows Fix
+gem 'tzinfo-data', platforms: [:mingw, :mswin]
+
 # Rspec
 gem 'rspec-rails', :group => [:development, :test]
