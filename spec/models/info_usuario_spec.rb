@@ -7,7 +7,7 @@ describe InfoUsuario, :type => :model do
 		usuario = create_info_usuario
 
 		usuario.should be_valid
-		usuario.curriculo.should be
+		usuario.cv.should be
 	end
 
 	it "deve ser invalido sem email" do
@@ -26,7 +26,7 @@ describe InfoUsuario, :type => :model do
 		usuario = create_info_usuario({:cv_id => nil})
 
 		usuario.should be_invalid
-		usuario.curriculo.should be nil
+		usuario.cv.should be nil
 	end
 
 	it "deve ter a senha criptografada com md5" do

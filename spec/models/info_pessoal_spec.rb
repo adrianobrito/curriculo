@@ -6,6 +6,7 @@ describe InfoPessoal, :type => :model do
 		info_pessoal = create_info_pessoal
 
 		info_pessoal.should be_valid
+		info_pessoal.cv.should be
 	end
 
 	it "deve ser invalido sem cpf" do 
@@ -74,6 +75,13 @@ describe InfoPessoal, :type => :model do
 		info_pessoal.should be_invalid
 	end
 	
+	it "deve ser invalido sem cv" do 
+		info_pessoal = create_info_pessoal({:cv_id => nil})
+		
+		info_pessoal.should be_invalid
+		info_pessoal.cv.should be nil
+	end
+
 	private 
 		def create_info_pessoal(option = {})
 			cv = Cv.create
@@ -89,7 +97,7 @@ describe InfoPessoal, :type => :model do
 				:cidade => 'Fortaleza',
 				:estado => 'Ceará',
 				:telefone => '(85)89405519',
-				:curriculo_id => cv.id
+				:cv_id => cv.id
 			}.merge(option))
 		end
 

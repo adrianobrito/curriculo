@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140910145834) do
+ActiveRecord::Schema.define(version: 20140910163817) do
 
   create_table "cvs", force: true do |t|
     t.datetime "created_at"
@@ -30,17 +30,17 @@ ActiveRecord::Schema.define(version: 20140910145834) do
     t.string   "cidade"
     t.string   "estado"
     t.string   "telefone"
-    t.integer  "curriculo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "cv_id"
   end
 
   create_table "info_usuarios", force: true do |t|
     t.string   "email"
     t.string   "senha"
-    t.integer  "cv_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "cv_id"
   end
 
 end
