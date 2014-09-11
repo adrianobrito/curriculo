@@ -10,6 +10,12 @@ describe InfoUsuario, :type => :model do
 		usuario.cv.should be
 	end
 
+	it "deve ser invalido sem login" do
+		usuario = create_info_usuario({:login => nil})
+
+		usuario.should be_invalid
+	end
+
 	it "deve ser invalido sem email" do
 		usuario = create_info_usuario({:email => nil})
 
@@ -51,6 +57,7 @@ describe InfoUsuario, :type => :model do
 		def create_info_usuario(option = {})
 			cv = Cv.create
 			InfoUsuario.create({
+				:login => 'adrianobrito',
 				:email => "adrianosdebrito@gmail.com",
 				:senha => "modafoca",
 				:cv_id => cv.id
