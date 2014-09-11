@@ -15,10 +15,16 @@ describe InfoAcademica, :type => :model do
 		info_academica.should be_invalid
 	end
 
-	it "deve ser invalido sem curso" do
+	it "deve ser invalido sem curso, caso seja graduacao, ou pos graduacao" do
 		info_academica = create_info_academica({:curso => nil})
 
 		info_academica.should be_invalid
+	end
+
+	it "deve ser valido sem curso, caso seja ensino fundamental ou medio" do
+		info_academica = create_info_academica({:nivel => :ensino_fundamental, :curso => nil})
+
+		info_academica.should be_valid
 	end
 
 	it "deve ser invalido sem verificação" do
