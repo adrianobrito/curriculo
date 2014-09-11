@@ -11,9 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140911125157) do
+ActiveRecord::Schema.define(version: 20140911154608) do
 
   create_table "cvs", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "info_academicas", force: true do |t|
+    t.integer  "nivel"
+    t.string   "curso"
+    t.boolean  "incompleto"
+    t.string   "instituicao"
+    t.date     "inicio"
+    t.date     "fim"
+    t.integer  "cv_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

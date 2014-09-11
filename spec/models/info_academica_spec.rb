@@ -5,8 +5,44 @@ describe InfoAcademica, :type => :model do
 	it "deve ser valido" do
 		info_academica = create_info_academica
 
-		info_academica.should be
-		info_pessoal.cv.should be
+		info_academica.should be_valid
+		info_academica.cv.should be
+	end
+
+	it "deve ser invalido sem nivel" do
+		info_academica = create_info_academica({:nivel => nil})
+
+		info_academica.should be_invalid
+	end
+
+	it "deve ser invalido sem curso" do
+		info_academica = create_info_academica({:curso => nil})
+
+		info_academica.should be_invalid
+	end
+
+	it "deve ser invalido sem verificação" do
+		info_academica = create_info_academica({:incompleto => nil})
+
+		info_academica.should be_invalid
+	end
+
+	it "deve ser invalido sem inicio" do
+		info_academica = create_info_academica({:inicio => nil})
+
+		info_academica.should be_invalid
+	end
+
+	it "deve ser invalido sem fim" do
+		info_academica = create_info_academica({:fim => nil})
+
+		info_academica.should be_invalid
+	end
+
+	it "deve ser invalido sem cv" do
+		info_academica = create_info_academica({:cv => nil})
+
+		info_academica.should be_invalid
 	end
 
 	private
@@ -14,7 +50,7 @@ describe InfoAcademica, :type => :model do
 			cv = Cv.create
 
 			InfoAcademica.create({
-				:nivel => :graduacao,
+				:nivel => :ensino_superior_graduacao,
 				:curso => "Computação - 8º Semestre",
 				:incompleto => true,
 				:instituicao => "Faculdade Farias Brito",

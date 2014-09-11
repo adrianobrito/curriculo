@@ -7,6 +7,7 @@ class CreateInfoAcademicas < ActiveRecord::Migration
       t.string :instituicao
       t.date :inicio
       t.date :fim
+      t.belongs_to :cv
 
       t.timestamps
     end
