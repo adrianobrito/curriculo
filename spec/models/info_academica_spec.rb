@@ -51,6 +51,25 @@ describe InfoAcademica, :type => :model do
 		info_academica.should be_invalid
 	end
 
+	it "deve ser possivel adicionar informacoes academcas para um cv" do
+		cv = Cv.create
+
+		info_academica = InfoAcademica.new({
+			:nivel => :ensino_superior_graduacao,
+			:curso => "Computação - 8º Semestre",
+			:incompleto => true,
+			:instituicao => "Faculdade Farias Brito",
+			:inicio => Date.new(2007,1,3),
+			:fim => Date.new(2014,9,15) ,
+			:cv_id => cv.id
+		})		
+
+		cv.info_academicas.push info_academica
+		cv.save
+
+		info_academica.id.should be
+	end
+
 	private
 		def create_info_academica(option = {})
 			cv = Cv.create
