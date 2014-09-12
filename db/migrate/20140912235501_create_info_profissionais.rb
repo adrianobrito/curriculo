@@ -3,8 +3,9 @@ class CreateInfoProfissionais < ActiveRecord::Migration
     create_table :info_profissionais do |t|
       t.date :inicio
       t.date :fim
-      t.string :instituicao
+      t.string :empresa
       t.string :cargo
+      t.belongs_to :cv
 
       t.timestamps
     end
