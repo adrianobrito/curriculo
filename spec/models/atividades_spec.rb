@@ -1,5 +1,14 @@
 require 'rails_helper'
 
-RSpec.describe Atividades, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Atividades, :type => :model do
+  
+	it "deve ser valido" do
+	end
+
+	private
+		def create_atividades
+			cv = Cv.create
+			Atividades.create(:descricao => 'Atividades')
+		end
+
 end
