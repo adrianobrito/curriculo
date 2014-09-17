@@ -17,4 +17,5 @@
 
 ActiveSupport::Inflector.inflections  do  |inflect|
   inflect.irregular  'info_profissional',  'info_profissionais'
+  inflect.irregular  'qualificacao',  'qualificacoes'
 end

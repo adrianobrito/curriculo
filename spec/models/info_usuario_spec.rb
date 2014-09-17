@@ -53,6 +53,21 @@ describe InfoUsuario, :type => :model do
 		usuario.should be_invalid
 	end
 
+	it "deve ser possivel relacionar um usuario a um cv" do
+		cv = Cv.create
+		info_usuario = InfoUsuario.new({
+			:login => 'adrianobrito',
+			:email => "adrianosdebrito@gmail.com",
+			:senha => "modafoca",
+			:cv_id => cv.id
+		})
+
+		cv.info_usuario = info_usuario;
+		cv.save
+
+		cv.info_usuario.id.should be
+	end
+
 	private 
 		def create_info_usuario(option = {})
 			cv = Cv.create

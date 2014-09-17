@@ -82,6 +82,29 @@ describe InfoPessoal, :type => :model do
 		info_pessoal.cv.should be nil
 	end
 
+	it "deve ser possivel relacionar uma informacao pessoal a um cv" do
+		cv = Cv.create
+		info_pessoal = InfoPessoal.new({
+			:cpf => '03576025367',
+			:nome => 'Adriano Sousa de Brito Bispo',
+			:nacionalidade => 'Brasileiro',
+			:estadoCivil => :casado, 
+			:endereco => 'Rua Costa Sousa',
+			:numeroEndereco => '71',
+			:complemento => 'Apartamento C',
+			:bairro => 'Benfica',
+			:cidade => 'Fortaleza',
+			:estado => 'Ceará',
+			:telefone => '(85)89405519',
+			:cv_id => cv.id
+		})
+
+		cv.info_pessoal = info_pessoal
+		cv.save
+
+		cv.info_pessoal.id.should be
+	end
+
 	private 
 		def create_info_pessoal(option = {})
 			cv = Cv.create
