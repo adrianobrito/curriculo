@@ -6,5 +6,4 @@ class InfoProfissional < ActiveRecord::Base
 	validates_presence_of :inicio, :fim, :empresa, :cargo, :cv_id, :atividades
 	validates_with DatePeriodValidator, :if => lambda{self.inicio and self.fim}
 
-
 end

@@ -43,3 +43,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 # Rspec
 gem 'rspec-rails', :group => [:development, :test]
+
+#Rack Test, to test the API 
+gem 'rack-test', :group => [:development, :test]
