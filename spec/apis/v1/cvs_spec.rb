@@ -15,7 +15,7 @@ describe '/api/v1/cvs', :type => :api do
 	end
 
 	it "deve ser possivel cadastrar informacoes de usuario" do
-		post 
+		
 
 	end
 
