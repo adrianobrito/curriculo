@@ -9,6 +9,8 @@ describe Cv, :type => :model do
 		cv.save
 
 		cv.should be_valid
+		cv.info_usuario.id.should be
+		cv.info_pessoal.id.should be
 	end
 
 	it "deve ser invalido sem informacao de usuario" do
