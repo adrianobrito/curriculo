@@ -32,13 +32,6 @@ describe Curso, :type => :model do
 		curso.should be_invalid
 	end
 
-	it "deve ser invalido sem cv" do
-		curso = create_curso({:cv_id => nil})
-
-		curso.should be_invalid
-		curso.cv.should be nil
-	end
-
 	it "deve ser invalido com fim menor que inicio" do
 		curso = create_curso({:fim => Date.new(2014, 01, 01), :inicio=> Date.new(2015, 01, 01)})
 
@@ -46,7 +39,7 @@ describe Curso, :type => :model do
 	end
 
 	it "deve ser possivel adicionar informacoes academcas para um cv" do
-		cv = Cv.create
+		cv = FactoryGirl.create(:cv)
 
 		curso = Curso.new({
 				:descricao => "Curso de Android",
@@ -64,7 +57,7 @@ describe Curso, :type => :model do
 
 	private
 		def create_curso(option = {})
-			cv = Cv.create
+			cv = FactoryGirl.create(:cv)
 			Curso.create({
 				:descricao => "Curso de Android",
 				:inicio => Date.new(2013,01,01),

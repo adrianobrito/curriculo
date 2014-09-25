@@ -32,13 +32,6 @@ describe InfoProfissional, :type => :model do
 		info_profissional.should be_invalid
 	end
 
-	it "deve ser invalido sem cv" do
-		info_profissional = create_info_profissional({:cv_id => nil})
-
-		info_profissional.should be_invalid
-		info_profissional.cv.should be nil
-	end
-
 	it "deve ser invalido com fim menor que inicio" do
 		info_academica = create_info_profissional({:fim => Date.new(2014, 01, 01), :inicio=> Date.new(2015, 01, 01)})
 
@@ -65,7 +58,7 @@ describe InfoProfissional, :type => :model do
 	end
 
 	it "deve ser possivel adicionar informacoes profissionais a um curriculo" do
-		cv = Cv.create
+		cv = FactoryGirl.create(:cv)
 		atividade = Atividade.new({:descricao => 'Atividade teste 1'})
 		info_profissional = InfoProfissional.new({
 			:inicio => Date.new(2013,01,01),
@@ -85,7 +78,7 @@ describe InfoProfissional, :type => :model do
 
 	private
 		def create_info_profissional(options = {})
-			cv = Cv.create
+			cv = FactoryGirl.create(:cv)
 			
 			atividade = Atividade.new({:descricao => 'Atividade teste 1'})
 

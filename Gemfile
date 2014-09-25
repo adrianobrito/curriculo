@@ -46,3 +46,6 @@ gem 'rspec-rails', :group => [:development, :test]
 
 #Rack Test, to test the API 
 gem 'rack-test', :group => [:development, :test]
+
+#Factories
+gem 'factory_girl_rails', :group => [:development, :test]

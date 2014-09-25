@@ -16,7 +16,7 @@ describe Qualificacao, :type => :model do
 	end
 
 	it "deve ser possivel adicionar uma qualificacao a um cv" do
-		cv = Cv.create
+		cv = FactoryGirl.create(:cv)
 		qualificacao = Qualificacao.new({:descricao => "Java", :cv_id => cv.id})
 
 		cv.qualificacaos.push qualificacao
@@ -27,7 +27,7 @@ describe Qualificacao, :type => :model do
 
 	private 
 		def create_qualificacao(options = {})
-			cv = Cv.create
+			cv = FactoryGirl.create(:cv)
 			Qualificacao.create({:descricao => "Java", :cv_id => cv.id}.merge(options))
 		end
 end

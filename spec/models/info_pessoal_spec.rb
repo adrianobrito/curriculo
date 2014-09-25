@@ -74,16 +74,9 @@ describe InfoPessoal, :type => :model do
 		
 		info_pessoal.should be_invalid
 	end
-	
-	it "deve ser invalido sem cv" do 
-		info_pessoal = create_info_pessoal({:cv_id => nil})
-		
-		info_pessoal.should be_invalid
-		info_pessoal.cv.should be nil
-	end
 
 	it "deve ser possivel relacionar uma informacao pessoal a um cv" do
-		cv = Cv.create
+		cv = FactoryGirl.create(:cv)
 		info_pessoal = InfoPessoal.new({
 			:cpf => '03576025367',
 			:nome => 'Adriano Sousa de Brito Bispo',
@@ -107,7 +100,7 @@ describe InfoPessoal, :type => :model do
 
 	private 
 		def create_info_pessoal(option = {})
-			cv = Cv.create
+			cv = FactoryGirl.create(:cv)
 			InfoPessoal.create({
 				:cpf => '03576025367',
 				:nome => 'Adriano Sousa de Brito Bispo',

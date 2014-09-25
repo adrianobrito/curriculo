@@ -51,14 +51,8 @@ describe InfoAcademica, :type => :model do
 		info_academica.should be_invalid
 	end
 
-	it "deve ser invalido sem cv" do
-		info_academica = create_info_academica({:cv => nil})
-
-		info_academica.should be_invalid
-	end
-
 	it "deve ser possivel adicionar informacoes academcas para um cv" do
-		cv = Cv.create
+		cv = FactoryGirl.create(:cv)
 
 		info_academica = InfoAcademica.new({
 			:nivel => :ensino_superior_graduacao,
@@ -78,7 +72,7 @@ describe InfoAcademica, :type => :model do
 
 	private
 		def create_info_academica(option = {})
-			cv = Cv.create
+			cv = FactoryGirl.create(:cv)
 
 			InfoAcademica.create({
 				:nivel => :ensino_superior_graduacao,

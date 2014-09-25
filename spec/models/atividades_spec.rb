@@ -16,7 +16,7 @@ describe Atividade, :type => :model do
 
 	private
 		def create_atividade(options = {})
-			cv = Cv.create
+			cv = FactoryGirl.create(:cv)
 			info_profissional = InfoProfissional.create({
 				:inicio => Date.new(2013,01,01),
 				:fim => Date.new(2013,01,01),

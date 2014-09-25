@@ -28,13 +28,6 @@ describe InfoUsuario, :type => :model do
 		usuario.should be_invalid
 	end
 
-	it "deve ser invalido sem cv" do
-		usuario = create_info_usuario({:cv_id => nil})
-
-		usuario.should be_invalid
-		usuario.cv.should be nil
-	end
-
 	it "deve ter a senha criptografada com md5" do
 		usuario = create_info_usuario({:senha => "modafoca"});
 		md5Senha = Digest::MD5.new
@@ -54,7 +47,7 @@ describe InfoUsuario, :type => :model do
 	end
 
 	it "deve ser possivel relacionar um usuario a um cv" do
-		cv = Cv.create
+		cv = FactoryGirl.create(:cv)
 		info_usuario = InfoUsuario.new({
 			:login => 'adrianobrito',
 			:email => "adrianosdebrito@gmail.com",
@@ -70,7 +63,7 @@ describe InfoUsuario, :type => :model do
 
 	private 
 		def create_info_usuario(option = {})
-			cv = Cv.create
+			cv = FactoryGirl.create(:cv)
 			InfoUsuario.create({
 				:login => 'adrianobrito',
 				:email => "adrianosdebrito@gmail.com",
