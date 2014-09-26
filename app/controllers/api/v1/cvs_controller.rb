@@ -1,16 +1,19 @@
 class Api::V1::CvsController < Api::V1::BaseController
 	
 	def create
+		params.permit!
+
 		cv = Cv.new
-		cv.info_usuario = InfoUsuario.new(params[:info_usuario])
-		cv.info_pessoal = InfoPessoal.new(params[:info_pessoal])
-		cv.info_academicas = InfoAcademica.new(params[:info_academicas])
-		cv.info_profissionals = InfoProfissional.new(params[:info_profissionals])
-		cv.cursos = Curso.new(params[:cursos])
-		cv.qualificacaos = Qualificacao.new(params[:qualificacaos])
+		cv.info_usuario = InfoUsuario.new(params[:cv][:info_usuario])
+		cv.info_pessoal = InfoPessoal.new(params[:cv][:info_pessoal])
+		params[:cv][:info_academicas].each { |info| cv.info_academicas << InfoAcademica.new(info) }
+		params[:cv][:info_profissionals].each { |info| cv.info_profissionals << InfoProfissional.new(info) }
+		params[:cv][:cursos].each { |info| cv.cursos << Curso.new(info) }
+		params[:cv][:qualificacaos].each { |info| cv.qualificacaos << Qualificacao.new(info) }
 
 		cv.save
-		
+		puts "SAVED - #{cv.inspect}" 
+
 		if cv.valid?
 			respond_with(cv, :location => api_v1_cv_path(cv))
 		else
@@ -18,10 +21,5 @@ class Api::V1::CvsController < Api::V1::BaseController
 		end
 
 	end
-
-	private
-		def cv_params
-	    	params.require(:cv).permit!
-	    end
 
 end
