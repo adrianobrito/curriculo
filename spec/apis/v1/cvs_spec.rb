@@ -19,11 +19,16 @@ describe '/api/v1/cvs', :type => :api do
 		
 		
 		cv = JSON.parse last_response.body 
-		puts "Response #{cv}"
 
 		cv["id"].should be 
 		last_response.status.should eql(201)
 	end
+  
+  it "erro ao criar cv invalido" do
+    post "#{url}.json",  :cv => {}
+    
+    last_response.status.should eql(201)
+  end
 
 
 end
