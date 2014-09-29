@@ -52,10 +52,9 @@ describe '/api/v1/cvs', :type => :api do
 
 	cv_json = JSON.parse last_response.body
 	
-  	puts cv_json
-
 	cv_json["id"].should be cv.id 
 	cv_json["info_usuario"].should be
+	cv_json["info_usuario"]["senha"].should be nil
 	cv_json["info_pessoal"].should be
 	cv_json["info_academicas"].should_not be_empty
 	cv_json["info_profissionals"].should be

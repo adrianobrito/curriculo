@@ -31,8 +31,17 @@ class Api::V1::CvsController < Api::V1::BaseController
 
   def show
   	cv = Cv.find(params[:id])
-  	
-    respond_with(cv)
+
+    respond_to { |format|
+		format.json { render :json => cv.to_json(:include => {
+			:info_usuario => {:except => [:senha]},
+			:info_pessoal  => {},
+			:info_academicas  => {},
+			:info_profissionals => {:include => :atividades},
+			:cursos  => {},
+			:qualificacaos  => {}
+		})}
+	}
   end
 
 
