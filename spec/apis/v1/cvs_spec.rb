@@ -41,10 +41,26 @@ describe '/api/v1/cvs', :type => :api do
   it "deve deletar um cv" do
     delete "#{url}/#{cv.id}.json"
     
-    cv_deleted = Cv.find(cv.id)
+    cv_deleted = Cv.find_by(id: cv.id)
     
     cv_deleted.should be nil
-    last_response.status.should eql(201)
+    last_response.status.should eql(204)
+  end
+
+  it "deve obter um cv" do
+  	get "#{url}/#{cv.id}.json"
+
+	cv_json = JSON.parse last_response.body
+	
+  	puts cv_json
+
+	cv_json["id"].should be cv.id 
+	cv_json["info_usuario"].should be
+	cv_json["info_pessoal"].should be
+	cv_json["info_academicas"].should_not be_empty
+	cv_json["info_profissionals"].should be
+	cv_json["qualificacaos"].should be
+	cv_json["cursos"].should be	
   end
 
 

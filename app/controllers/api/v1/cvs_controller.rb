@@ -24,7 +24,16 @@ class Api::V1::CvsController < Api::V1::BaseController
   def destroy
     cv = Cv.find(params[:id])
     cv.destroy
+
     respond_with(cv)
   end
+
+
+  def show
+  	cv = Cv.find(params[:id])
+  	
+    respond_with(cv)
+  end
+
 
 end

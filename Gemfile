@@ -49,3 +49,6 @@ gem 'rack-test', :group => [:development, :test]
 
 #Factories
 gem 'factory_girl_rails', :group => [:development, :test]
+
+# Fast Specs 
+gem 'spork'
