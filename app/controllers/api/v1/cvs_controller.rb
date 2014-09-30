@@ -1,8 +1,6 @@
 class Api::V1::CvsController < Api::V1::BaseController
 	
 	def create
-		params.permit!
-
 		cv = Cv.new
 		cv.info_usuario = InfoUsuario.new(params[:cv][:info_usuario])  if params[:cv][:info_usuario]
 		cv.info_pessoal = InfoPessoal.new(params[:cv][:info_pessoal])  if params[:cv][:info_pessoal]
