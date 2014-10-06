@@ -6,4 +6,16 @@ class Api::V1::BaseController < ActionController::Base
   		params.permit!
   	end
 
+  	def respond_put(model)
+  		respond_with(model) do |format|
+			format.json {
+			    if model.valid?
+			      render json: model
+			    else
+			      render json: model.errors, status: :unprocessable_entity
+			    end
+			}
+		end
+  	end
+
 end
