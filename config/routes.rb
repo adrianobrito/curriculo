@@ -58,6 +58,7 @@ Rails.application.routes.draw do
     namespace :v1 do
         resources :cvs do
           resources :info_usuarios
+          resources :info_pessoais
         end
     end
   end
