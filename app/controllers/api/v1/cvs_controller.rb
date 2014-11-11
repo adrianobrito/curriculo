@@ -19,28 +19,28 @@ class Api::V1::CvsController < Api::V1::BaseController
 
 	end
   
-  def destroy
-    cv = Cv.find(params[:id])
-    cv.destroy
+	def destroy
+		cv = Cv.find(params[:id])
+		cv.destroy
 
-    respond_with(cv)
-  end
+		respond_with(cv)
+	end
 
 
-  def show
-  	cv = Cv.find(params[:id])
+	def show
+		cv = Cv.find(params[:id])
 
-    respond_to { |format|
-		format.json { render :json => cv.to_json(:include => {
-			:info_usuario => {:except => [:senha]},
-			:info_pessoal  => {},
-			:info_academicas  => {},
-			:info_profissionals => {:include => :atividades},
-			:cursos  => {},
-			:qualificacaos  => {}
-		})}
-	}
-  end
+		respond_to { |format|
+			format.json { render :json => cv.to_json(:include => {
+				:info_usuario => {:except => [:senha]},
+				:info_pessoal  => {},
+				:info_academicas  => {},
+				:info_profissionals => {:include => :atividades},
+				:cursos  => {},
+				:qualificacaos  => {}
+			})}
+		}
+	end
 
 
 end
