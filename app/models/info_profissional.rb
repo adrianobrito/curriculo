@@ -6,6 +6,5 @@ class InfoProfissional < ActiveRecord::Base
 	validates_presence_of :inicio, :fim, :empresa, :cargo, :atividades
 	validates_with DatePeriodValidator, :if => lambda{self.inicio and self.fim}
 	accepts_nested_attributes_for :atividades, allow_destroy: true
-	
 
 end

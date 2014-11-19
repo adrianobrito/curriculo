@@ -59,6 +59,7 @@ Rails.application.routes.draw do
         resources :cvs do
           resources :info_usuarios
           resources :info_pessoais
+          resources :info_academicas
           resources :info_profissionais
         end
     end
