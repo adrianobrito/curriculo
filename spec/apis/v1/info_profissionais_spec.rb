@@ -25,6 +25,26 @@ describe '/api/v1/cvs/info_profisionais', :type => :api do
 
 	end
 
+	it "editar uma atividade de uma informação profissional" do
+		info_profissional = cv.info_profissionals[0]
+		atividade = info_profissional.atividades[0]
+		atividade.descricao = 'Atividade do Mal'
+
+		put "#{url}/#{info_profissional.id}.json", 
+			 :info_profissional => FactoryGirl.attributes_for(:info_profissional)
+			 								  .merge({
+			 								  		:id => info_profissional.id,
+			 								  		:cv_id => cv.id,
+			 								  		:atividades_attributes => [ {:id => atividade.id,
+			 								  						  :descricao => atividade.descricao} ]
+			 								   })
+
+		info_profissional = InfoProfissional.find_by(:id => info_profissional.id)
+
+		info_profissional.atividades[0].descricao.should eql('Atividade do Mal')
+		last_response.status.should eql(200)
+	end
+
 	it "deve disparar um erro ao atualizar com informações invalidas" do
 		info_profissional = cv.info_profissionals[0]
 		
