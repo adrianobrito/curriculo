@@ -68,7 +68,7 @@ describe '/api/v1/cvs/cursos', :type => :api do
 		last_response.status.should eql(422)
 	end
 
-	it "removendo uma informação academica" do
+	it "removendo um curso" do
 		curso = cv.cursos[0]
 
 		delete "#{url}/#{curso.id}.json"
@@ -78,7 +78,7 @@ describe '/api/v1/cvs/cursos', :type => :api do
 		last_response.status.should eql(204)
 	end
 
-	it "obtendo uma informação profissional" do
+	it "obtendo uma curso" do
 		curso = cv.cursos[0]
 		get "#{url}/#{curso.id}.json"
 

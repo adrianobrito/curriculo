@@ -79,7 +79,7 @@ describe '/api/v1/cvs/info_academicas', :type => :api do
 		last_response.status.should eql(204)
 	end
 
-	it "obtendo uma informação profissional" do
+	it "obtendo uma informação academica" do
 		info_academica = cv.info_academicas[0]
 		get "#{url}/#{info_academica.id}.json"
 
