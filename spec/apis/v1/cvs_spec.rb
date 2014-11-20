@@ -63,5 +63,4 @@ describe '/api/v1/cvs', :type => :api do
 		cv_json["cursos"].should be	
 	  end
 
-
 end

@@ -61,6 +61,7 @@ Rails.application.routes.draw do
           resources :info_pessoais
           resources :info_academicas
           resources :info_profissionais
+          resources :cursos
         end
     end
   end

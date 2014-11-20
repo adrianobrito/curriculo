@@ -39,12 +39,6 @@ describe InfoAcademica, :type => :model do
 		info_academica.should be_invalid
 	end
 
-	it "deve ser invalido sem fim" do
-		info_academica = create_info_academica({:fim => nil})
-
-		info_academica.should be_invalid
-	end
-
 	it "deve ser invalido com fim menor que inicio" do
 		info_academica = create_info_academica({:fim => Date.new(2014, 01, 01), :inicio=> Date.new(2015, 01, 01)})
 

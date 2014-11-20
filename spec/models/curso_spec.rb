@@ -14,12 +14,6 @@ describe Curso, :type => :model do
 		curso.should be_invalid
 	end
 
-	it "deve ser invalido sem fim" do
-		curso = create_curso({:fim => nil})
-
-		curso.should be_invalid
-	end
-
 	it "deve ser invalido sem descricao" do
 		curso = create_curso({:descricao => nil})
 
