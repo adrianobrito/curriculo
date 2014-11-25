@@ -54,4 +54,4 @@ gem 'factory_girl_rails', :group => [:development, :test]
 gem 'spork'
 
 # Postgres
-gem 'pg'
+gem 'pg', :group => :production
