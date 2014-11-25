@@ -52,3 +52,6 @@ gem 'factory_girl_rails', :group => [:development, :test]
 
 # Fast Specs 
 gem 'spork'
+
+# Postgres
+gem 'pg'
