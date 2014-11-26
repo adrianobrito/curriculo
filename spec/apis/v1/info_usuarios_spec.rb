@@ -33,11 +33,12 @@ describe '/api/v1/cvs/info_usuarios', :type => :api do
   	end
 
     it "deve autenticar um usuário com base no usuário e na senha" do
-      info_usuario = cv.info_usuario
+      cv
+      info_usuario = FactoryGirl.attributes_for(:info_usuario)
 
-      get "#{loginUrl}.json", :info_usuario => {
-        :login => info_usuario.login,
-        :senha => info_usuario.senha
+      post "#{loginUrl}.json", :info_usuario => {
+        :login => info_usuario[:login],
+        :senha => info_usuario[:senha]
       }
 
       info_usuario_json = JSON.parse last_response.body
@@ -46,11 +47,11 @@ describe '/api/v1/cvs/info_usuarios', :type => :api do
     end
 
     it "deve retornar nulo um usuário com base no usuário e na senha errados" do
-      info_usuario = cv.info_usuario
+     info_usuario = FactoryGirl.attributes_for(:info_usuario)
 
-      get "#{loginUrl}.json", :info_usuario => {
+      post "#{loginUrl}.json", :info_usuario => {
         :login => nil,
-        :senha => info_usuario.senha
+        :senha => info_usuario[:senha]
       }
 
       error = JSON.parse last_response.body

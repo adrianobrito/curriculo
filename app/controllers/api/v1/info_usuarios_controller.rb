@@ -12,13 +12,22 @@ class Api::V1::InfoUsuariosController < Api::V1::BaseController
 	end
 	
 	def autenticar
-		info_usuario = InfoUsuario.find_by(params[:info_usuario])
-
+		info_usuario = params[:info_usuario]
+		info_usuario[:senha] = to_md5(info_usuario[:senha])
+		
+		info_usuario = InfoUsuario.find_by(info_usuario)
+		
 		if info_usuario
-			respond_with(info_usuario)
+			render json: info_usuario
 		else
 			respond_with_errors(['Login ou senha inválidos'])
 		end
+	end
+
+	def to_md5(str)
+		md5Senha = Digest::MD5.new
+		md5Senha.update str
+		md5Senha.to_s
 	end
 
 end
