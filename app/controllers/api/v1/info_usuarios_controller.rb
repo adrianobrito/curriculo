@@ -10,5 +10,10 @@ class Api::V1::InfoUsuariosController < Api::V1::BaseController
 		info_usuario = InfoUsuario.find(params[:id])
 		respond_with(info_usuario)
 	end
+	
+	def autenticar
+		info_usuario = InfoUsuario.find_by(params[:info_usuario])
+		respond_with(info_usuario)
+	end
 
 end

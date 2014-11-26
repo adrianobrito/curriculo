@@ -56,6 +56,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+        get 'login' => 'info_usuarios#autenticar'
+
         resources :cvs do
           resources :info_usuarios
           resources :info_pessoais

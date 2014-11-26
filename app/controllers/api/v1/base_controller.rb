@@ -18,4 +18,8 @@ class Api::V1::BaseController < ActionController::Base
 		end
   	end
 
+  	def respond_with_error(error)
+  		 render json: {:error => error }, status: :unprocessable_entity
+  	end
+
 end
