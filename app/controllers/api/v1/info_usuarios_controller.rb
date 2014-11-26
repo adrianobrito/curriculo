@@ -13,7 +13,12 @@ class Api::V1::InfoUsuariosController < Api::V1::BaseController
 	
 	def autenticar
 		info_usuario = InfoUsuario.find_by(params[:info_usuario])
-		respond_with(info_usuario)
+
+		if info_usuario
+			respond_with(info_usuario)
+		else
+			respond_with_errors(['Login ou senha inválidos'])
+		end
 	end
 
 end

@@ -53,8 +53,10 @@ describe '/api/v1/cvs/info_usuarios', :type => :api do
         :senha => info_usuario.senha
       }
 
-      last_response.body.should eql "null"
-      last_response.status.should eql(200)
+      error = JSON.parse last_response.body
+
+      error["errors"].should be
+      last_response.status.should eql(422)
     end
 
   	it "obtendo uma informacao de usuario" do
