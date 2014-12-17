@@ -75,6 +75,12 @@ describe InfoPessoal, :type => :model do
 		info_pessoal.should be_invalid
 	end
 
+	it "deve ser invalido sem nascimento" do 
+		info_pessoal = create_info_pessoal({:nascimento => nil})
+		
+		info_pessoal.should be_invalid
+	end
+
 	it "deve ser possivel relacionar uma informacao pessoal a um cv" do
 		cv = FactoryGirl.create(:cv)
 		info_pessoal = InfoPessoal.new({
@@ -89,7 +95,8 @@ describe InfoPessoal, :type => :model do
 			:cidade => 'Fortaleza',
 			:estado => 'Ceará',
 			:telefone => '(85)89405519',
-			:cv_id => cv.id
+			:cv_id => cv.id,
+			:nascimento => Date.new(1990,01,01)
 		})
 
 		cv.info_pessoal = info_pessoal
@@ -113,7 +120,8 @@ describe InfoPessoal, :type => :model do
 				:cidade => 'Fortaleza',
 				:estado => 'Ceará',
 				:telefone => '(85)89405519',
-				:cv_id => cv.id
+				:cv_id => cv.id,
+				:nascimento => Date.new(1990,01,01)
 			}.merge(option))
 		end
 

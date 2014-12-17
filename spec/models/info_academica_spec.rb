@@ -33,18 +33,6 @@ describe InfoAcademica, :type => :model do
 		info_academica.should be_invalid
 	end
 
-	it "deve ser invalido sem inicio" do
-		info_academica = create_info_academica({:inicio => nil})
-
-		info_academica.should be_invalid
-	end
-
-	it "deve ser invalido com fim menor que inicio" do
-		info_academica = create_info_academica({:fim => Date.new(2014, 01, 01), :inicio=> Date.new(2015, 01, 01)})
-
-		info_academica.should be_invalid
-	end
-
 	it "deve ser possivel adicionar informacoes academcas para um cv" do
 		cv = FactoryGirl.create(:cv)
 
@@ -53,8 +41,6 @@ describe InfoAcademica, :type => :model do
 			:curso => "Computação - 8º Semestre",
 			:incompleto => true,
 			:instituicao => "Faculdade Farias Brito",
-			:inicio => Date.new(2007,1,3),
-			:fim => Date.new(2014,9,15) ,
 			:cv_id => cv.id
 		})		
 
@@ -73,8 +59,6 @@ describe InfoAcademica, :type => :model do
 				:curso => "Computação - 8º Semestre",
 				:incompleto => true,
 				:instituicao => "Faculdade Farias Brito",
-				:inicio => Date.new(2007,1,3),
-				:fim => Date.new(2014,9,15) ,
 				:cv_id => cv.id
 			}.merge(option))
 		end

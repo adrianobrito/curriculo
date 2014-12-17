@@ -11,5 +11,6 @@ FactoryGirl.define do
 	cidade 'Fortaleza'
 	estado 'Ceará'
 	telefone '(85)89405519'
+	nascimento Date.new(1990,01,01)
   end
 end
