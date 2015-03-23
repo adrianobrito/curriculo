@@ -66,6 +66,7 @@ Rails.application.routes.draw do
           resources :cursos
           resources :qualificacoes
         end
+
     end
   end
 
