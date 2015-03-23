@@ -55,3 +55,6 @@ gem 'spork'
 
 # Postgres
 gem 'pg', :group => :production
+
+# CORS Config
+gem 'rack-cors', :require => 'rack/cors'
