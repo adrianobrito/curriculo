@@ -54,9 +54,11 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
+
+  match '*all' => 'application#cor', :constraints => {:method => 'OPTIONS'}
+
   namespace :api do
     namespace :v1 do
-        match '*', :controller => 'application', :action => 'handle_options_request', :constraints => {:method => 'OPTIONS'}
         post 'login' => 'info_usuarios#autenticar'
 
         resources :cvs do
