@@ -2,12 +2,11 @@ class Api::V1::BaseController < ActionController::Base
 	respond_to :json
 	
 	before_filter :permitir_parametros
-	before_filter :allow_ajax_request_from_other_domains
+	after_filter :set_access_control_headers
 
-	def allow_ajax_request_from_other_domains
+	def set_access_control_headers
 		headers['Access-Control-Allow-Origin'] = '*'
 		headers['Access-Control-Request-Method'] = '*'
-		headers['Access-Control-Allow-Headers'] = '*'
 	end
   	
   	def permitir_parametros
