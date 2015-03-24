@@ -56,7 +56,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-        match '*path', :controller => 'application', :action => 'handle_options_request', :constraints => {:method => 'OPTIONS'}
+        match '*', :controller => 'application', :action => 'handle_options_request', :constraints => {:method => 'OPTIONS'}
         post 'login' => 'info_usuarios#autenticar'
 
         resources :cvs do
