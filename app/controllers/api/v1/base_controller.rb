@@ -2,12 +2,6 @@ class Api::V1::BaseController < ActionController::Base
 	respond_to :json
 	
 	before_filter :permitir_parametros
-	after_filter :set_access_control_headers
-
-	def set_access_control_headers
-		headers['Access-Control-Allow-Origin'] = '*'
-		headers['Access-Control-Request-Method'] = '*'
-	end
   	
   	def permitir_parametros
   		params.permit!
