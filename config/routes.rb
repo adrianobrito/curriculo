@@ -55,7 +55,7 @@ Rails.application.routes.draw do
   #   end
 
 
-  match '*all' => 'application#cors_preflight_check', :via => {:options}
+  match '*all' => 'application#cors_preflight_check', :via => [:options]
 
   namespace :api do
     namespace :v1 do
