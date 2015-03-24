@@ -67,8 +67,6 @@ Rails.application.routes.draw do
           resources :qualificacoes
         end
 
-        match '/cvs', :controller => 'cvs', :action => 'options', :constraints => {:method => 'OPTIONS'}
-
     end
   end
 
