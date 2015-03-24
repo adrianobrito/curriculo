@@ -2,27 +2,14 @@ class Api::V1::BaseController < ActionController::Base
 	respond_to :json
 	
 	before_filter :permitir_parametros
-	before_filter :cors_preflight_check
- 	after_filter :cors_set_access_control_headers
- 
- 	def cors_set_access_control_headers
-	    headers['Access-Control-Allow-Origin'] = '*'
-	    headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE, OPTIONS'
-	    headers['Access-Control-Allow-Headers'] = 'Origin, Content-Type, Accept, Authorization, Token'
-	    headers['Access-Control-Max-Age'] = "1728000"
-	end
- 
-	def cors_preflight_check
-		if request.method == 'OPTIONS'
-		  headers['Access-Control-Allow-Origin'] = '*'
-		  headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE, OPTIONS'
-		  headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version, Token'
-		  headers['Access-Control-Max-Age'] = '1728000'
+	before_filter :allow_ajax_request_from_other_domains
 
-		  render :text => '', :content_type => 'text/plain'
-		end
+	def allow_ajax_request_from_other_domains
+		headers['Access-Control-Allow-Origin'] = '*'
+		headers['Access-Control-Request-Method'] = '*'
+		headers['Access-Control-Allow-Headers'] = '*'
 	end
-
+  	
   	def permitir_parametros
   		params.permit!
   	end
