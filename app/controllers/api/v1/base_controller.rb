@@ -2,14 +2,27 @@ class Api::V1::BaseController < ActionController::Base
 	respond_to :json
 	
 	before_filter :permitir_parametros
-	before_filter :allow_ajax_request_from_other_domains
+	before_filter :cors_preflight_check
+  	after_filter :cors_set_access_control_headers
+ 
+  	def cors_set_access_control_headers
+	    headers['Access-Control-Allow-Origin'] = '*'
+	    headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE, OPTIONS'
+	    headers['Access-Control-Allow-Headers'] = 'Origin, Content-Type, Accept, Authorization, Token'
+	    headers['Access-Control-Max-Age'] = "1728000"
+  	end
+ 
+  	def cors_preflight_check
+	    if request.method == 'OPTIONS'
+	      headers['Access-Control-Allow-Origin'] = '*'
+	      headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE, OPTIONS'
+	      headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version, Token'
+	      headers['Access-Control-Max-Age'] = '1728000'
+	 
+	      render :text => '', :content_type => 'text/plain'
+    	end
+  	end
 
-	def allow_ajax_request_from_other_domains
-		headers['Access-Control-Allow-Origin'] = '*'
-		headers['Access-Control-Request-Method'] = '*'
-		headers['Access-Control-Allow-Headers'] = '*'
-	end
-  	
   	def permitir_parametros
   		params.permit!
   	end
@@ -30,17 +43,5 @@ class Api::V1::BaseController < ActionController::Base
   		 render json: {:errors => errors }, status: :unprocessable_entity
   	end
 
-  	def options
-    	set_access_control_headers
-        head :ok
-    end
-
-    private
-	    def set_access_control_headers 
-	      headers['Access-Control-Allow-Origin'] = '*'
-	      headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
-	      headers['Access-Control-Max-Age'] = '1000'
-	      headers['Access-Control-Allow-Headers'] = '*,x-requested-with'
-	    end
 
 end
