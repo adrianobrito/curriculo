@@ -54,9 +54,6 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-
-  match '*all' => 'application#cors_preflight_check', :via => [:options]
-
   namespace :api do
     namespace :v1 do
         post 'login' => 'info_usuarios#autenticar'
