@@ -70,4 +70,15 @@ Rails.application.routes.draw do
     end
   end
 
+  match "*path" => proc { |env| [
+      200,
+      {
+        "Content-Type" => 'text/plain',
+        "Access-Control-Allow-Origin" => '*',
+        "Access-Control-Allow-Methods" => %w{GET POST PUT DELETE}.join(","),
+        "Access-Control-Allow-Headers" => %w{Origin Accept Content-Type X-Requested-With X-CSRF-Token}.join(",")
+      },
+      ["Generated Text"]
+    ]},  via: [:options]
+
 end
